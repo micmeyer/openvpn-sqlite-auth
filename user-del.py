@@ -7,7 +7,6 @@ import sys
 
 from config import DB_PATH
 
-
 if len(sys.argv) != 2:
     print("USAGE: %s <username>" % sys.argv[0])
     sys.exit(1)

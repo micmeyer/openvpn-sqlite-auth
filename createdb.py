@@ -7,7 +7,6 @@ import sys
 
 from config import DB_PATH
 
-
 if os.path.exists(DB_PATH):
     print("ERROR: File already exists: %s" % DB_PATH)
     sys.exit(2)

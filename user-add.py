@@ -9,7 +9,6 @@ from getpass import getpass
 
 from config import DB_PATH, PASSWORD_LENGTH_MIN, HASH_ALGORITHM
 
-
 if len(sys.argv) != 2:
     print("USAGE: %s <username>" % sys.argv[0])
     sys.exit(1)

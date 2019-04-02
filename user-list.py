@@ -7,7 +7,6 @@ import sys
 
 from config import DB_PATH
 
-
 if not os.path.exists(DB_PATH):
     print("ERROR: Database not found: %s" % DB_PATH)
     sys.exit(2)

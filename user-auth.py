@@ -8,7 +8,6 @@ import sys
 
 from config import DB_PATH, HASH_ALGORITHM
 
-
 hash_func = getattr(hashlib, HASH_ALGORITHM)
 conn = sqlite3.connect(DB_PATH)
 cursor = conn.cursor()
