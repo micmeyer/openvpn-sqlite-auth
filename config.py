@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 # Path where users database should be stored
 DB_PATH = '/tmp/openvpn-auth-test.sqlite'
 # Minimum required length for passwords when creating users
