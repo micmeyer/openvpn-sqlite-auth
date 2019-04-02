@@ -8,7 +8,7 @@ from config import DB_PATH, HASH_ALGORITHM
 
 # Read username and password from via-file
 filename = sys.argv[1]
-print "[auth-sqlite] filename : " + filename
+print("[auth-sqlite] filename: " + filename)
 fp = open(filename)
 data = fp.readlines()
 fp.close()
@@ -22,8 +22,10 @@ cursor = conn.cursor()
 cursor.execute('SELECT * FROM users WHERE username = ?;', (username,))
 result = cursor.fetchone()
 if result is None:
+    print("[auth-sqlite] unknown user: " + username, file=sys.stderr)
     sys.exit(1)
 username, password = result
 if hash_func(password.encode("utf-8")).hexdigest() != password:
+    print("[auth-sqlite] wrong password, username=" + username, file=sys.stderr)
     sys.exit(1)
 sys.exit(0)
