@@ -1,21 +1,29 @@
 #!/usr/bin/env python
 
 import hashlib
-import os
 import sqlite3
 import sys
 
 from config import DB_PATH, HASH_ALGORITHM
 
+# Read username and password from via-file
+filename = sys.argv[1]
+print "[auth-sqlite] filename : " + filename
+fp = open(filename)
+data = fp.readlines()
+fp.close()
+username = data[0].rstrip()
+password = data[1].rstrip()
+
 hash_func = getattr(hashlib, HASH_ALGORITHM)
 conn = sqlite3.connect(DB_PATH)
 cursor = conn.cursor()
 
-cursor.execute('SELECT * FROM users WHERE username = ?;', (os.environ['username'],))
+cursor.execute('SELECT * FROM users WHERE username = ?;', (username,))
 result = cursor.fetchone()
 if result is None:
     sys.exit(1)
 username, password = result
-if hash_func(os.environ['password'].encode("utf-8")).hexdigest() != password:
+if hash_func(password.encode("utf-8")).hexdigest() != password:
     sys.exit(1)
 sys.exit(0)
